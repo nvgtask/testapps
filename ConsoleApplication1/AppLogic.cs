@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-    class Program
+    public class AppLogic
     {
-        static void Main(string[] args)
+        public void ExecuteTask(string[] args)
         {
-            var appLogic = new AppLogic();
-            appLogic.ExecuteTask(args);
+            //TODO: Add applogic here
         }
     }
 }
