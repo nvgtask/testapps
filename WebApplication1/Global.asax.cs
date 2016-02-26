@@ -17,17 +17,7 @@ namespace WebApplication1
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            using (var provider = new SQLiteDataProvider())
-            {
-                provider.ExecuteNonQuery("create table highscores (name varchar(100), score int)");
-                provider.ExecuteNonQuery("insert into highscores (name, score) values ('Jim', 10000)");
-                provider.ExecuteNonQuery("insert into highscores (name, score) values ('Mary', 3000)");
-                provider.ExecuteNonQuery("insert into highscores (name, score) values ('Paul', 9500)");
-                provider.ExecuteNonQuery("insert into highscores (name, score) values ('Kim', 2500)");
-                provider.ExecuteNonQuery("insert into highscores (name, score) values ('John', 8000)");
-            }
+            BundleConfig.RegisterBundles(BundleTable.Bundles);            
         }
     }
 }
