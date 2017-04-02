@@ -7,6 +7,7 @@ namespace WebApplication1.Models
 {
     public class HighScoreModel
     {
+        public double Id { get; set; }
         public string Name { get; set; }
         public int Score { get; set; }
     }

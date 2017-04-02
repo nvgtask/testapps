@@ -23,9 +23,15 @@ namespace WebApplication1
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/highScoreJs").Include(
+                        "~/Scripts/Function/HighScore.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/highScoreCss").Include(
+                      "~/Content/Function/HighScore.css"));
         }
     }
 }

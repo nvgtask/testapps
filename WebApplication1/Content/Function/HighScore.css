@@ -1,0 +1,19 @@
+﻿#newForm {
+    margin: 10px;
+    float: right;
+}
+
+#newFormFunction {
+    margin: 10px;
+    float: right;
+}
+
+#btnCreateHs {
+    margin: 10px;
+    float: right;
+}
+.modal-header {
+    background: #d3d3d3;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

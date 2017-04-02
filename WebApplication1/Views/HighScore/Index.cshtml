@@ -1,24 +1,47 @@
 ﻿@model List<WebApplication1.Models.HighScoreModel>
+@using System.Web.UI.WebControls
 @using WebApplication1.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "High Score";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title List</h2>
 
-<table cellpadding="0" cellspacing="0" class="table">
+<button id="btnCreateHs" type="button" class="btn-info" data-toggle="modal" data-target="#newForm">Create</button>
+<div id="newForm" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Creat High Score</h4>
+            </div>
+            <div class="modal-body">
+                Name <input type="text" class="form-control" />
+                Score <input type="text" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Save</button>
+                <button id="btnCanHsCrea" type="button" class="btn" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table cellpadding="0" cellspacing="0" class="table table-striped">
     <tr>
-        <th>Name</th>
-        <th>Score</th>
-        <th></th>
+        <th class="col-5">Name</th>
+        <th class="col-5">Score</th>
+        <th class="col-2"></th>
     </tr>
     @foreach (HighScoreModel highScore in Model)
     {
         <tr>
             <td>@highScore.Name</td>
             <td>@highScore.Score</td>
-            <td><button type="button" class="delete" data-id="-1">Delete</button></td>
+            <td><button type="button" class="btn-danger" data-id="@highScore.Id">Delete</button></td>
         </tr>
     }
 </table>
+@Styles.Render("~/Content/highScoreCss")
+@Scripts.Render("~/bundles/highScoreJs")
