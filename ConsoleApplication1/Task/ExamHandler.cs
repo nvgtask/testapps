@@ -25,6 +25,9 @@ namespace ConsoleApplication1.Task
             {
                 do
                 {
+                    Console.WriteLine("=================");
+                    Console.WriteLine("                 ");
+                    Console.WriteLine("=================");
                     Console.WriteLine("Input command:");
                     command = Console.ReadLine();
 

@@ -8,11 +8,13 @@ using ConsoleApplication1.Constants;
 using ConsoleApplication1.FileHandle;
 using ConsoleApplication1.Model;
 using ConsoleApplication1.Model.Result;
+using log4net;
 
 namespace ConsoleApplication1.Command
 {
     public class TotalCountCommand : ICommand
     {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private string _filePath;
         private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
@@ -76,7 +78,9 @@ namespace ConsoleApplication1.Command
 
             foreach (var result in results)
             {
-                Console.WriteLine(result.Sip + " : " + result.Count);
+                string formatedResult = result.Sip + " : " + result.Count;
+                Console.WriteLine(formatedResult);
+                Log.Info(formatedResult);
             }
         }
     }

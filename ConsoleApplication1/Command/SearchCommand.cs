@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using ConsoleApplication1.FileHandle;
 using ConsoleApplication1.Model;
 using ConsoleApplication1.Model.Result;
+using log4net;
 
 namespace ConsoleApplication1.Command
 {
     public class SearchCommand : ICommand
     {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private string _filePath;
         private string _sipValue;
         private readonly string _sipString = Constants.Common.SipColName;
@@ -60,12 +62,13 @@ namespace ConsoleApplication1.Command
             _sipColNo = efr.GetColNo(s, _sipString);
         }
 
-        private void GetLineBySip(IFileReader efr, string s)
+        private void GetLineBySip(IFileReader efr, string lineData)
         {
-            string sipValue = efr.GetColStrVal(s, _sipColNo);
+            string sipValue = efr.GetColStrVal(lineData, _sipColNo);
             if (sipValue == _sipValue)
             {
-                Console.WriteLine(s);
+                Console.WriteLine(lineData);
+                Log.Info(lineData);
             }
         }
     }

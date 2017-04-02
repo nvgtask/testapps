@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using ConsoleApplication1.FileHandle;
 using ConsoleApplication1.Model;
 using ConsoleApplication1.Model.Result;
+using log4net;
 
 namespace ConsoleApplication1.Command
 {
     public class TimeTakenCommand : ICommand
     {
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private string _filePath;
         private readonly string _timetakenColName = Constants.Common.TimeTakenColName;
         private int _timetakenColNo = -1;
@@ -76,8 +78,9 @@ namespace ConsoleApplication1.Command
 
         private void ShowResult()
         {
-            var result = _logs.Average(l => l.TimeTaken);
-            Console.WriteLine("Time taken average is: " + result);
+            var result = "Time taken average is: " + _logs.Average(l => l.TimeTaken);
+            Console.WriteLine(result);
+            Log.Info(result);
         }
     }
 }
