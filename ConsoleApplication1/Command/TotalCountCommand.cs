@@ -13,7 +13,7 @@ namespace ConsoleApplication1.Command
         public void DoJob()
         {
             Console.WriteLine("TotalCountCommand");
-            EntityFileReader efr = new EntityFileReader(Common.SipString);
+            EntityFileReader efr = new EntityFileReader(Constants.Common.SipString);
             efr.Read();
         }
     }

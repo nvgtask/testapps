@@ -35,6 +35,9 @@ namespace ConsoleApplication1.Task
                         case Common.Command.Exit:
                             _command = new ExitCommand();
                             break;
+                        case Common.Command.Help:
+                            _command = new HelpCommand();
+                            break;
                         default:
                             _command = new IncorrectCommand();
                             break;

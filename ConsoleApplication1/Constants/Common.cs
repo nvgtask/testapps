@@ -15,6 +15,7 @@ namespace ConsoleApplication1.Constants
             public const string TotalCount = "totalcount";
             public const string Search = "search";
             public const string TimeTaken = "time_taken";
+            public const string Help = "help";
             public const string Exit = "exit";
         }
 
