@@ -8,7 +8,8 @@ namespace ConsoleApplication1.Constants
 {
     public class Common
     {
-        public const string SipString = "s-ip";
+        public const string SipColName= "s-ip";
+        public const string TimeTakenColName = "time-taken";
 
         public static class Command
         {

@@ -44,17 +44,6 @@ namespace ConsoleApplication1.FileHandle
             return colNo;
         }
 
-        public Log GetColVal(string str, int colNo)
-        {
-            var lineData = str.Split(' ').ToList();
-            Log log = new Log()
-            {
-                Sip = lineData[colNo]
-            };
-
-            return log;
-        }
-
         public string GetColStrVal(string str, int colNo)
         {
             var lineData = str.Split(' ').ToList();

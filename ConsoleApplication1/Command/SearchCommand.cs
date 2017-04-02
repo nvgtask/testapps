@@ -13,7 +13,7 @@ namespace ConsoleApplication1.Command
     public class SearchCommand : ICommand
     {
         private string _sipValue;
-        private readonly string _sipString = Constants.Common.SipString;
+        private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
         private readonly List<Log> _logs = new List<Log>();
 

@@ -12,7 +12,6 @@ namespace ConsoleApplication1.FileHandle
     {
         StreamReader ReadFile();
         int GetColNo(string str, string colName);
-        Log GetColVal(string str, int colNo);
         string GetColStrVal(string str, int colNo);
     }
 }

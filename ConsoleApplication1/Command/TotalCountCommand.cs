@@ -13,7 +13,7 @@ namespace ConsoleApplication1.Command
 {
     public class TotalCountCommand : ICommand
     {
-        private readonly string _sipString = Constants.Common.SipString;
+        private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
         private readonly List<Log> _logs = new List<Log>();
 
@@ -55,7 +55,11 @@ namespace ConsoleApplication1.Command
 
         private void GetSipValue(IFileReader efr, string s)
         {
-            Log log = efr.GetColVal(s, _sipColNo);
+            Log log = new Log
+            {
+                Sip = efr.GetColStrVal(s, _sipColNo)
+            };
+
             _logs.Add(log);
         }
 
