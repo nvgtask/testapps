@@ -12,7 +12,7 @@ namespace WebApplication1.Frame.DataAccess
 
         public SQLiteDataProvider()
         {
-            dbConnection = new SQLiteConnection(@"Data Source=C:\is24exam\testapps\WebApplication1\App_Data\MyDatabase.sqlite;Version=3;");
+            dbConnection = new SQLiteConnection(@"Data Source=C:\nvgtask\testapps\WebApplication1\App_Data\MyDatabase.sqlite;Version=3;");
             dbConnection.Open();
         }
 

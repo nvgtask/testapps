@@ -1,0 +1,24 @@
+﻿@model List<WebApplication1.Models.HighScoreModel>
+@using WebApplication1.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table cellpadding="0" cellspacing="0" class="table">
+    <tr>
+        <th>Name</th>
+        <th>Score</th>
+        <th></th>
+    </tr>
+    @foreach (HighScoreModel highScore in Model)
+    {
+        <tr>
+            <td>@highScore.Name</td>
+            <td>@highScore.Score</td>
+            <td><button type="button" class="delete" data-id="-1">Delete</button></td>
+        </tr>
+    }
+</table>
