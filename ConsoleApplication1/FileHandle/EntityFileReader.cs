@@ -16,7 +16,8 @@ namespace ConsoleApplication1.FileHandle
     {
         private readonly string _sipString;
         private readonly string fileName = @"C:\nvgtask\testapps\ConsoleApplication1\Testdata\is24_iis.log";
-        private int _sipColNo;
+        private int _sipColNo = -1;
+        List<Log> logs = new List<Log>();
 
         public EntityFileReader(string sipString)
         {
@@ -25,13 +26,23 @@ namespace ConsoleApplication1.FileHandle
 
         public void Read()
         {
-            GetSipColNo();
-            GetSip();
+            ReadSip();
+            ShowResult();
         }
 
-        private void GetSipColNo()
+        private void ShowResult()
         {
-            _sipColNo = -1;
+            var results = logs.GroupBy(l => l.Sip)
+                      .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Count() });
+
+            foreach (var result in results)
+            {
+                Console.WriteLine(result.Sip + " : " + result.Count);
+            }
+        }
+
+        private void ReadSip()
+        {
             using (StreamReader sr = File.OpenText(fileName))
             {
                 string s = String.Empty;
@@ -39,51 +50,43 @@ namespace ConsoleApplication1.FileHandle
                 {
                     if (s.StartsWith("#Field"))
                     {
-                        var lineData = s.Split(' ').ToList();
-                        lineData.RemoveAt(0);
-
-                        for (int i = 0; i < lineData.Count; i++)
-                        {
-                            if (lineData[i] == _sipString)
-                            {
-                                _sipColNo = i;
-                            }
-                        }
+                        GetSipColNo(s);
+                        continue;
                     }
+
+                    if (s.StartsWith("#"))
+                    {
+                        continue;
+                    }
+
+                    GetSipValue(s);
                 }
             }
         }
 
-        private void GetSip()
+        private void GetSipColNo(string s)
         {
-            List<Log> logs = new List<Log>();
-            using (StreamReader sr = File.OpenText(fileName))
+            var lineData = s.Split(' ').ToList();
+            lineData.RemoveAt(0);
+
+            for (int i = 0; i < lineData.Count; i++)
             {
-                string s = String.Empty;
-                while ((s = sr.ReadLine()) != null)
+                if (lineData[i] == _sipString)
                 {
-                    if(s.StartsWith("#"))
-                    {
-                        continue;   
-                    }
-
-                    var lineData = s.Split(' ').ToList();
-                    Log log = new Log()
-                    {
-                        Sip = lineData[_sipColNo]
-                    };
-
-                    logs.Add(log);
+                    _sipColNo = i;
                 }
             }
+        }
 
-            var results = logs.GroupBy(l => l.Sip)
-                      .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Count()});
-
-            foreach (var result in results)
+        private void GetSipValue(string s)
+        {
+            var lineData = s.Split(' ').ToList();
+            Log log = new Log()
             {
-                Console.WriteLine(result.Sip + " : " + result.Count);
-            }
+                Sip = lineData[_sipColNo]
+            };
+
+            logs.Add(log);
         }
     }
 }

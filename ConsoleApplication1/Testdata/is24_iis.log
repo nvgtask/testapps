@@ -4080,3 +4080,20 @@
 2016-01-15 16:31:42 172.17.0.218 GET /public/magazine/getbysearch lng=fr&s=louer&c=1251 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT+6.1;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/47.0.2526.111+Safari/537.36 200 0 0 45
 2016-01-15 16:31:42 172.17.0.218 GET /master/jsresources lng=fr 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT+6.1;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/47.0.2526.111+Safari/537.36 200 0 0 4
 2016-01-15 16:31:42 172.17.0.219 GET /master/jsresources lng=fr 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT+6.1;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/47.0.2526.111+Safari/537.36 200 0 0 4
+#Software: Microsoft Internet Information Services 7.5
+#Version: 1.0
+#Date: 2016-01-15 11:45:50
+#Fields: time-taken date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) sc-status sc-substatus sc-win32-status
+69 2016-01-15 11:45:50 172.17.0.218 GET /public/home - 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT;+Windows+NT+6.1;+de-CH)+WindowsPowerShell/4.0 301 0 0
+2016-01-15 11:45:55 172.17.0.218 GET /public/home lng=en& 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT;+Windows+NT+6.1;+de-CH)+WindowsPowerShell/4.0 200 0 0 4263
+2016-01-15 11:45:55 172.17.0.218 GET /public/ad/searchresult lng=de&s=2&t=2&l=436 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT;+Windows+NT+6.1;+de-CH)+WindowsPowerShell/4.0 200 0 0 144
+2016-01-15 11:46:17 172.17.0.218 GET /public/home - 80 - 172.17.3.136 Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/47.0.2526.106+Safari/537.36 301 0 0 69
+2016-01-15 11:46:18 172.17.0.218 GET /public/home lng=de& 80 - 172.17.3.136 Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/47.0.2526.106+Safari/537.36 200 0 0 1115
+2016-01-15 11:46:18 172.17.0.218 GET /master/initJSResources lng=de 80 - 172.17.3.136 Mozilla/5.0+(Windows+NT+6.3;+WOW64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/47.0.2526.106+Safari/537.36 200 0 0 6
+#Software: Microsoft Internet Information Services 7.5
+#Version: 1.0
+#Date: 2016-01-15 12:51:54
+#Fields: sc-win32-status time-taken date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) sc-status sc-substatus
+2016-01-15 12:51:54 172.17.0.218 GET /public/home - 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT;+Windows+NT+6.1;+de-CH)+WindowsPowerShell/4.0 301 0 0 15
+2016-01-15 12:51:54 172.17.0.218 GET /public/home lng=en& 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT;+Windows+NT+6.1;+de-CH)+WindowsPowerShell/4.0 200 0 0 87
+2016-01-15 12:51:54 172.17.0.218 GET /public/ad/searchresult lng=de&s=2&t=2&l=436 80 - 172.17.0.218 Mozilla/5.0+(Windows+NT;+Windows+NT+6.1;+de-CH)+WindowsPowerShell/4.0 200 0 0 135
