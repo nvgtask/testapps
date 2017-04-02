@@ -14,79 +14,51 @@ namespace ConsoleApplication1.FileHandle
 {
     public class EntityFileReader : IFileReader
     {
-        private readonly string _sipString;
-        private readonly string fileName = @"C:\nvgtask\testapps\ConsoleApplication1\Testdata\is24_iis.log";
-        private int _sipColNo = -1;
-        List<Log> logs = new List<Log>();
+        
+        private readonly string _filePath;
 
-        public EntityFileReader(string sipString)
+        public EntityFileReader(string filePath)
         {
-            this._sipString = sipString;
+            _filePath = filePath;
         }
 
-        public void Read()
+        public StreamReader ReadFile()
         {
-            ReadSip();
-            ShowResult();
+            return File.OpenText(_filePath);
         }
 
-        private void ShowResult()
+        public int GetColNo(string str, string colName)
         {
-            var results = logs.GroupBy(l => l.Sip)
-                      .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Count() });
-
-            foreach (var result in results)
-            {
-                Console.WriteLine(result.Sip + " : " + result.Count);
-            }
-        }
-
-        private void ReadSip()
-        {
-            using (StreamReader sr = File.OpenText(fileName))
-            {
-                string s = String.Empty;
-                while ((s = sr.ReadLine()) != null)
-                {
-                    if (s.StartsWith("#Field"))
-                    {
-                        GetSipColNo(s);
-                        continue;
-                    }
-
-                    if (s.StartsWith("#"))
-                    {
-                        continue;
-                    }
-
-                    GetSipValue(s);
-                }
-            }
-        }
-
-        private void GetSipColNo(string s)
-        {
-            var lineData = s.Split(' ').ToList();
+            var colNo = -1;
+            var lineData = str.Split(' ').ToList();
             lineData.RemoveAt(0);
 
-            for (int i = 0; i < lineData.Count; i++)
+            for (var i = 0; i < lineData.Count; i++)
             {
-                if (lineData[i] == _sipString)
+                if (lineData[i] == colName)
                 {
-                    _sipColNo = i;
+                    colNo = i;
                 }
             }
+
+            return colNo;
         }
 
-        private void GetSipValue(string s)
+        public Log GetColVal(string str, int colNo)
         {
-            var lineData = s.Split(' ').ToList();
+            var lineData = str.Split(' ').ToList();
             Log log = new Log()
             {
-                Sip = lineData[_sipColNo]
+                Sip = lineData[colNo]
             };
 
-            logs.Add(log);
+            return log;
+        }
+
+        public string GetColStrVal(string str, int colNo)
+        {
+            var lineData = str.Split(' ').ToList();
+            return lineData[colNo];
         }
     }
 }

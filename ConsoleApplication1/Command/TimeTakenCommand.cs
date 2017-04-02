@@ -8,7 +8,7 @@ namespace ConsoleApplication1.Command
 {
     public class TimeTakenCommand : ICommand
     {
-        public void DoJob()
+        public void DoJob(string filePath)
         {
             Console.WriteLine("TimeTakenCommand");
         }

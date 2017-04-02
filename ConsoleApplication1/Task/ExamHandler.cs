@@ -11,6 +11,13 @@ namespace ConsoleApplication1.Task
     public class ExamHandler : ITaskHandler
     {
         private ICommand _command;
+        private string _filePath;
+
+        public ExamHandler(string filePath)
+        {
+            _filePath = filePath;
+        }
+
         public void Listener()
         {
             string command;
@@ -44,7 +51,7 @@ namespace ConsoleApplication1.Task
                     }
                 } while (_command == null);
 
-                _command.DoJob();
+                _command.DoJob(_filePath);
             } while (command != Common.Command.Exit);
 
             Console.Read();

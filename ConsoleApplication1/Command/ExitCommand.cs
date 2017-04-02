@@ -8,7 +8,7 @@ namespace ConsoleApplication1.Command
 {
     public class ExitCommand : ICommand
     {
-        public void DoJob()
+        public void DoJob(string filePath)
         {
             Environment.Exit(0);
         }

@@ -8,7 +8,7 @@ namespace ConsoleApplication1.Command
 {
     public class IncorrectCommand : ICommand
     {
-        public void DoJob()
+        public void DoJob(string filePath)
         {
             Console.WriteLine("IncorrectCommand - Please input again.");
         }

@@ -9,7 +9,7 @@ namespace ConsoleApplication1.Command
 {
     public class HelpCommand : ICommand
     {
-        public void DoJob()
+        public void DoJob(string filePath)
         {
             AboutApp.Introduce();
         }

@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleApplication1.Model;
 
 namespace ConsoleApplication1.FileHandle
 {
     interface IFileReader
     {
-        void Read();
+        StreamReader ReadFile();
+        int GetColNo(string str, string colName);
+        Log GetColVal(string str, int colNo);
+        string GetColStrVal(string str, int colNo);
     }
 }
