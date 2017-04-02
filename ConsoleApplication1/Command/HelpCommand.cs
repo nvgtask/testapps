@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ConsoleApplication1.AppData;
+﻿using ConsoleApplication1.AppData;
 
 namespace ConsoleApplication1.Command
 {
@@ -11,7 +6,7 @@ namespace ConsoleApplication1.Command
     {
         public void DoJob()
         {
-            AboutApp.Introduce();
+            AppInfo.Introduce();
         }
     }
 }

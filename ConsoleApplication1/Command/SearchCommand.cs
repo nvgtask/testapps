@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ConsoleApplication1.FileHandle;
-using ConsoleApplication1.Model;
-using ConsoleApplication1.Model.Result;
 using log4net;
 
 namespace ConsoleApplication1.Command
@@ -14,11 +8,10 @@ namespace ConsoleApplication1.Command
     public class SearchCommand : ICommand
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private string _filePath;
+        private readonly string _filePath;
         private string _sipValue;
         private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
-        private readonly List<Log> _logs = new List<Log>();
 
         public SearchCommand(string filePath)
         {
@@ -27,11 +20,17 @@ namespace ConsoleApplication1.Command
 
         public void DoJob()
         {
-            Console.WriteLine("SearchCommand");
-            Console.WriteLine("Input s-ip value:");
+            StartCommand();
             _sipValue = Console.ReadLine();
             EntityFileReader efr = new EntityFileReader(_filePath);
             HandleData(efr);
+        }
+
+        private void StartCommand()
+        {
+            Console.WriteLine("SearchCommand");
+            Console.WriteLine("");
+            Console.WriteLine("Input s-ip value:");
         }
 
         private void HandleData(IFileReader efr)

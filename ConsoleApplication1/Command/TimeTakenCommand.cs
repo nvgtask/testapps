@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
-using System.Threading.Tasks;
 using ConsoleApplication1.FileHandle;
 using ConsoleApplication1.Model;
-using ConsoleApplication1.Model.Result;
 using log4net;
 
 namespace ConsoleApplication1.Command
@@ -27,10 +23,15 @@ namespace ConsoleApplication1.Command
 
         public void DoJob()
         {
-            Console.WriteLine("TimeTakenCommand");
+            StartCommand();
             EntityFileReader efr = new EntityFileReader(_filePath);
             ReadTimeTaken(efr);
             ShowResult();
+        }
+
+        private void StartCommand()
+        {
+            Console.WriteLine("TimeTakenCommand");
         }
 
         private void ReadTimeTaken(IFileReader efr)

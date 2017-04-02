@@ -7,7 +7,7 @@ using ConsoleApplication1.Constants;
 
 namespace ConsoleApplication1.AppData
 {
-    public static class AboutApp
+    public static class AppInfo
     {
         public static void Introduce()
         {

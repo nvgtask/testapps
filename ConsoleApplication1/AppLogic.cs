@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using ConsoleApplication1.AppData;
-using ConsoleApplication1.Constants;
-using ConsoleApplication1.FileHandle;
+﻿using ConsoleApplication1.AppData;
 using ConsoleApplication1.Task;
 
 namespace ConsoleApplication1
@@ -18,7 +9,7 @@ namespace ConsoleApplication1
         {
              var filePath = @"C:\nvgtask\testapps\ConsoleApplication1\Testdata\is24_iis.log";
             //TODO: Add applogic here
-            AboutApp.Introduce();
+            AppInfo.Introduce();
             ITaskHandler handler = new ExamHandler(filePath);
             handler.Listener();
         }

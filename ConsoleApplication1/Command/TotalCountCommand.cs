@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ConsoleApplication1.Constants;
 using ConsoleApplication1.FileHandle;
 using ConsoleApplication1.Model;
 using ConsoleApplication1.Model.Result;
@@ -27,10 +24,15 @@ namespace ConsoleApplication1.Command
 
         public void DoJob()
         {
-            Console.WriteLine("TotalCountCommand");
+            StartCommand();
             EntityFileReader efr = new EntityFileReader(_filePath);
             ReadSip(efr);
             ShowResult();
+        }
+
+        private void StartCommand()
+        {
+            Console.WriteLine("TotalCountCommand");
         }
 
         private void ReadSip(IFileReader efr)

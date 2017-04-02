@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppData\AboutApp.cs" />
+    <Compile Include="AppData\AppInfo.cs" />
     <Compile Include="AppLogic.cs" />
     <Compile Include="Command\ExitCommand.cs" />
     <Compile Include="Command\HelpCommand.cs" />
