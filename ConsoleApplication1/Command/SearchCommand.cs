@@ -12,17 +12,23 @@ namespace ConsoleApplication1.Command
 {
     public class SearchCommand : ICommand
     {
+        private string _filePath;
         private string _sipValue;
         private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
         private readonly List<Log> _logs = new List<Log>();
 
-        public void DoJob(string filePath)
+        public SearchCommand(string filePath)
+        {
+            _filePath = filePath;
+        }
+
+        public void DoJob()
         {
             Console.WriteLine("SearchCommand");
             Console.WriteLine("Input s-ip value:");
             _sipValue = Console.ReadLine();
-            EntityFileReader efr = new EntityFileReader(filePath);
+            EntityFileReader efr = new EntityFileReader(_filePath);
             HandleData(efr);
         }
 

@@ -8,6 +8,6 @@ namespace ConsoleApplication1.Command
 {
     interface ICommand
     {
-        void DoJob(string filePath);
+        void DoJob();
     }
 }

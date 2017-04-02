@@ -13,14 +13,20 @@ namespace ConsoleApplication1.Command
 {
     public class TotalCountCommand : ICommand
     {
+        private string _filePath;
         private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
         private readonly List<Log> _logs = new List<Log>();
 
-        public void DoJob(string filePath)
+        public TotalCountCommand(string filePath)
+        {
+            _filePath = filePath;
+        }
+
+        public void DoJob()
         {
             Console.WriteLine("TotalCountCommand");
-            EntityFileReader efr = new EntityFileReader(filePath);
+            EntityFileReader efr = new EntityFileReader(_filePath);
             ReadSip(efr);
             ShowResult();
         }

@@ -31,13 +31,13 @@ namespace ConsoleApplication1.Task
                     switch (command)
                     {
                         case Common.Command.TotalCount:
-                            _command = new TotalCountCommand();
+                            _command = new TotalCountCommand(_filePath);
                             break;
                         case Common.Command.Search:
-                            _command = new SearchCommand();
+                            _command = new SearchCommand(_filePath);
                             break;
                         case Common.Command.TimeTaken:
-                            _command = new TimeTakenCommand();
+                            _command = new TimeTakenCommand(_filePath);
                             break;
                         case Common.Command.Exit:
                             _command = new ExitCommand();
@@ -51,7 +51,7 @@ namespace ConsoleApplication1.Task
                     }
                 } while (_command == null);
 
-                _command.DoJob(_filePath);
+                _command.DoJob();
             } while (command != Common.Command.Exit);
 
             Console.Read();

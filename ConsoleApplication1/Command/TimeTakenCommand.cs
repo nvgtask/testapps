@@ -13,14 +13,20 @@ namespace ConsoleApplication1.Command
 {
     public class TimeTakenCommand : ICommand
     {
+        private string _filePath;
         private readonly string _timetakenColName = Constants.Common.TimeTakenColName;
         private int _timetakenColNo = -1;
         private readonly List<Log> _logs = new List<Log>();
 
-        public void DoJob(string filePath)
+        public TimeTakenCommand(string filePath)
+        {
+            _filePath = filePath;
+        }
+
+        public void DoJob()
         {
             Console.WriteLine("TimeTakenCommand");
-            EntityFileReader efr = new EntityFileReader(filePath);
+            EntityFileReader efr = new EntityFileReader(_filePath);
             ReadTimeTaken(efr);
             ShowResult();
         }
