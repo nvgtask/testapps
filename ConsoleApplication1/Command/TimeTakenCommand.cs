@@ -17,10 +17,7 @@ namespace ConsoleApplication1.Command
         private int _timetakenColNo = -1;
         private List<Log> _logs = new List<Log>();
 
-        //private double _tempResult;
-        //private bool _firstTransTime = true;
-
-        private List<TempTimeTaken> _tempData = new List<TempTimeTaken>();
+        private readonly List<TempTimeTaken> _tempData = new List<TempTimeTaken>();
 
         public TimeTakenCommand(string filePath)
         {
@@ -58,6 +55,9 @@ namespace ConsoleApplication1.Command
                         continue;
                     }
 
+                    // Reading in one process
+                    //GetTimeTakenValue(efr, str);
+
                     //Paging Reading
                     GetTimeTakenValueWithTemp(efr, str);
                 }
@@ -74,12 +74,20 @@ namespace ConsoleApplication1.Command
             string valueStr = efr.GetColStrVal(s, _timetakenColNo);
             double value;
 
+            
             if (double.TryParse(valueStr, out value))
             {
                 Log log = new Log
                 {
                     TimeTaken = value
                 };
+
+                var sum = _logs.Sum(l => l.TimeTaken);
+                if (sum + log.TimeTaken > double.MaxValue)
+                {
+                    TransferDataListToTemp();
+                }
+
                 _logs.Add(log);
             }
         }
@@ -145,7 +153,6 @@ namespace ConsoleApplication1.Command
             }
             return sum/count;
         }
-
         #endregion Paging reading
     }
 }

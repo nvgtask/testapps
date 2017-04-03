@@ -54,7 +54,10 @@ namespace ConsoleApplication1.Command
                     {
                         continue;
                     }
-                    
+
+                    // Reading in one process
+                    //GetSipValue(efr, str);
+
                     // Paging Reading
                     GetSipValueWithTemp(efr,str);
                 }

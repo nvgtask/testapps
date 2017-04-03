@@ -9,7 +9,7 @@
         {
             public const string TotalCount = "totalcount";
             public const string Search = "search";
-            public const string TimeTaken = "time_taken";
+            public const string TimeTaken = "avetime";
             public const string Help = "help";
             public const string Exit = "exit";
         }
