@@ -15,7 +15,7 @@ namespace ConsoleApplication1.Command
         private readonly string _filePath;
         private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
-        private List<Log> _logs = new List<Log>();
+        private readonly List<Log> _logs = new List<Log>();
 
         private readonly List<TotalCountResult> _tempResult = new List<TotalCountResult>();
 

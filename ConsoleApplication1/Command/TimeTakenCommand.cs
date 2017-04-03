@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using ConsoleApplication1.FileHandle;
@@ -15,7 +14,7 @@ namespace ConsoleApplication1.Command
         private readonly string _filePath;
         private readonly string _timetakenColName = Constants.Common.TimeTakenColName;
         private int _timetakenColNo = -1;
-        private List<Log> _logs = new List<Log>();
+        private readonly List<Log> _logs = new List<Log>();
 
         private readonly List<TempTimeTaken> _tempData = new List<TempTimeTaken>();
 
@@ -83,7 +82,7 @@ namespace ConsoleApplication1.Command
                 };
 
                 var sum = _logs.Sum(l => l.TimeTaken);
-                if (sum + log.TimeTaken > double.MaxValue)
+                if (double.MaxValue - sum < log.TimeTaken)
                 {
                     TransferDataListToTemp();
                 }
