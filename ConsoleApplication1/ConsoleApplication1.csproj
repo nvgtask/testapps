@@ -63,7 +63,8 @@
     <Compile Include="FileHandle\EntityFileReader.cs" />
     <Compile Include="FileHandle\IFileReader.cs" />
     <Compile Include="Model\Entity\IEntity.cs" />
-    <Compile Include="Model\Log.cs" />
+    <Compile Include="Model\Entity\Log.cs" />
+    <Compile Include="Model\Entity\TempTimeTaken.cs" />
     <Compile Include="Model\Result\IResult.cs" />
     <Compile Include="Model\Result\TotalCountResult.cs" />
     <Compile Include="Program.cs" />

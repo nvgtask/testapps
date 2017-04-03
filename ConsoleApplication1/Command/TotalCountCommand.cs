@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ConsoleApplication1.FileHandle;
-using ConsoleApplication1.Model;
+using ConsoleApplication1.Model.Entity;
 using ConsoleApplication1.Model.Result;
 using log4net;
 
@@ -54,7 +54,8 @@ namespace ConsoleApplication1.Command
                     {
                         continue;
                     }
-
+                    
+                    // Paging Reading
                     GetSipValueWithTemp(efr,str);
                 }
             }
@@ -128,8 +129,8 @@ namespace ConsoleApplication1.Command
                 _tempResult.Add(result);
             }
 
-            // Reset _log
-            _logs = new List<Log>();
+            // Reset data list of text line
+            _logs.Clear();
         }
 
         private IEnumerable<TotalCountResult> CaculateOnTemp()

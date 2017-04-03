@@ -1,6 +1,6 @@
-﻿namespace ConsoleApplication1.Model
+﻿namespace ConsoleApplication1.Model.Entity
 {
-    public class Log
+    public class Log : IEntity
     {
         //date time s-ip cs-method cs-uri-stem cs-uri-query s-port cs-username c-ip cs(User-Agent) sc-status sc-substatus sc-win32-status time-taken
         public string Sip { get; set; }
