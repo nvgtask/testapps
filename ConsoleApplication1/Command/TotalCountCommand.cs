@@ -12,10 +12,12 @@ namespace ConsoleApplication1.Command
     public class TotalCountCommand : ICommand
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private string _filePath;
+        private readonly string _filePath;
         private readonly string _sipString = Constants.Common.SipColName;
         private int _sipColNo = -1;
-        private readonly List<Log> _logs = new List<Log>();
+        private List<Log> _logs = new List<Log>();
+
+        private readonly List<TotalCountResult> _tempResult = new List<TotalCountResult>();
 
         public TotalCountCommand(string filePath)
         {
@@ -39,21 +41,21 @@ namespace ConsoleApplication1.Command
         {
             using (StreamReader sr = efr.ReadFile())
             {
-                string s = String.Empty;
-                while ((s = sr.ReadLine()) != null)
+                string str;
+                while ((str = sr.ReadLine()) != null)
                 {
-                    if (s.StartsWith("#Field"))
+                    if (str.StartsWith("#Field"))
                     {
-                        GetSipColNo(efr,s);
+                        GetSipColNo(efr,str);
                         continue;
                     }
 
-                    if (s.StartsWith("#"))
+                    if (str.StartsWith("#"))
                     {
                         continue;
                     }
 
-                    GetSipValue(efr,s);
+                    GetSipValueWithTemp(efr,str);
                 }
             }
         }
@@ -75,8 +77,8 @@ namespace ConsoleApplication1.Command
 
         private void ShowResult()
         {
-            var results = _logs.GroupBy(l => l.Sip)
-                      .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Count() });
+            var results = CaculateOnTemp();
+            //var results = CaculateOnLogs();
 
             foreach (var result in results)
             {
@@ -85,5 +87,59 @@ namespace ConsoleApplication1.Command
                 Log.Info(formatedResult);
             }
         }
+
+        // Read data in one process
+        #region Read data in one process
+        private IEnumerable<TotalCountResult> CaculateOnLogs()
+        {
+            var results = _logs.GroupBy(l => l.Sip)
+          .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Count() });
+
+            return results;
+        }
+        #endregion Read data in one process
+
+        // Paging reading - Prevent out of memory
+        #region Paging reading
+
+        private void GetSipValueWithTemp(IFileReader efr, string s)
+        {
+            GetSipValue(efr, s);
+            // paging reading
+            AddToTempResult();
+        }
+
+        private void AddToTempResult()
+        {
+            if (_logs.Count > 1000)
+            {
+                TransferDataListToTemp();
+            }
+        }
+
+        private void TransferDataListToTemp()
+        {
+            var results = _logs.GroupBy(l => l.Sip)
+                      .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Count() }).ToList();
+
+            // Transfer results to temp
+            foreach (var result in results)
+            {
+                _tempResult.Add(result);
+            }
+
+            // Reset _log
+            _logs = new List<Log>();
+        }
+
+        private IEnumerable<TotalCountResult> CaculateOnTemp()
+        {
+            TransferDataListToTemp();
+            var results = _tempResult.GroupBy(temp => temp.Sip)
+                      .Select(g => new TotalCountResult { Sip = g.Key, Count = g.Sum(temp => temp.Count) });
+
+            return results;
+        }
+        #endregion Paging reading
     }
 }

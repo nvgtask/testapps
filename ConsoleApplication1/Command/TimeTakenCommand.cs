@@ -11,7 +11,7 @@ namespace ConsoleApplication1.Command
     public class TimeTakenCommand : ICommand
     {
         private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private string _filePath;
+        private readonly string _filePath;
         private readonly string _timetakenColName = Constants.Common.TimeTakenColName;
         private int _timetakenColNo = -1;
         private readonly List<Log> _logs = new List<Log>();
@@ -38,21 +38,21 @@ namespace ConsoleApplication1.Command
         {
             using (StreamReader sr = efr.ReadFile())
             {
-                string s = String.Empty;
-                while ((s = sr.ReadLine()) != null)
+                string str;
+                while ((str = sr.ReadLine()) != null)
                 {
-                    if (s.StartsWith("#Field"))
+                    if (str.StartsWith("#Field"))
                     {
-                        GetTimeTakenColNo(efr, s);
+                        GetTimeTakenColNo(efr, str);
                         continue;
                     }
 
-                    if (s.StartsWith("#"))
+                    if (str.StartsWith("#"))
                     {
                         continue;
                     }
 
-                    GetTimeTakenValue(efr, s);
+                    GetTimeTakenValue(efr, str);
                 }
             }
         }
