@@ -141,6 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business\HighScoreBusiness.cs" />
+    <Compile Include="Constants\Message.cs" />
     <Compile Include="Controllers\HighScoreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Frame\DataAccess\SQLiteDataProvider.cs" />
@@ -148,12 +149,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HighScoreModel.cs" />
+    <Compile Include="Models\ViewModel\HighScore\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Function\HighScore.css" />
+    <Content Include="Content\HighScore\Common.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -596,10 +598,12 @@
     <Content Include="packages\WebGrease.1.5.2\WebGrease.1.5.2.nupkg" />
     <Content Include="packages\WebGrease.1.6.0\WebGrease.1.6.0.nupkg" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Funtion\HighScore.js" />
+    <Content Include="Scripts\HighScore\Common.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -623,6 +627,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\HighScore\Index.cshtml" />
+    <Content Include="Views\HighScore\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

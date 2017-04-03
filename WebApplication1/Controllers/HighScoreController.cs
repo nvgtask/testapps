@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Services.Description;
+﻿using System.Web.Mvc;
 using WebApplication1.Business;
+using WebApplication1.Constants;
 using WebApplication1.Models;
+using WebApplication1.Models.ViewModel.HighScore;
 
 namespace WebApplication1.Controllers
 {
@@ -15,16 +12,36 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             HighScoreBusiness hsBus = new HighScoreBusiness();
-            var highScores = hsBus.GetAll();
-            return View(highScores);
+            IndexViewModel viewModel = new IndexViewModel {HighScores = hsBus.GetAll()};
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            HighScoreModel hsModel = new HighScoreModel();
+            return View(hsModel);
         }
 
         [HttpPost]
-        public JsonResult Create(HighScoreModel highScore)
+        public ActionResult Create(HighScoreModel highScore)
+        {
+            if (ModelState.IsValid)
+            {
+                HighScoreBusiness hsBus = new HighScoreBusiness();
+                hsBus.CreateNew(highScore);
+                return RedirectToAction("Index");
+            }
+            return Json(new {Message = Message.CannotCreate}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpDelete]
+        public JsonResult Delete(int id)
         {
             HighScoreBusiness hsBus = new HighScoreBusiness();
-            hsBus.CreateNew(highScore);
-            return Json(new {Message = "Success"});
+            bool result = hsBus.Delete(id);
+            return Json(new { Id = id, IsDeleted = result }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

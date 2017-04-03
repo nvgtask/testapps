@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Web;
 using WebApplication1.Frame.DataAccess;
 using WebApplication1.Models;
 
@@ -35,9 +33,19 @@ namespace WebApplication1.Business
         {
             using (var sdp = new SQLiteDataProvider())
             {
-                var results = new List<HighScoreModel>();
-                var query = $"insert into highscores (name, score) values ({highScore.Name}, {highScore.Score})";
+                var query = $"insert into highscores (name, score) values ('{highScore.Name}', {highScore.Score})";
                 sdp.ExecuteNonQuery(query);    
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            using (var sdp = new SQLiteDataProvider())
+            {
+                var query = $"delete from highscores where rowid = {id}";
+                var rowCount = sdp.ExecuteQuery(query);
+
+                return rowCount > 0;
             }
         }
     }

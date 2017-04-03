@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Web;
 
 namespace WebApplication1.Frame.DataAccess
 {
     public class SQLiteDataProvider : IDisposable
     {
-        private SQLiteConnection dbConnection;
+        private readonly SQLiteConnection _dbConnection;
 
         public SQLiteDataProvider()
         {
-            dbConnection = new SQLiteConnection(@"Data Source=C:\nvgtask\testapps\WebApplication1\App_Data\MyDatabase.sqlite;Version=3;");
-            dbConnection.Open();
+            _dbConnection = new SQLiteConnection(@"Data Source=C:\nvgtask\testapps\WebApplication1\App_Data\MyDatabase.sqlite;Version=3;");
+            _dbConnection.Open();
         }
 
         public SQLiteCommand GetCommand(string sql)
         {
-            return new SQLiteCommand(sql, dbConnection);
+            return new SQLiteCommand(sql, _dbConnection);
         }
 
         public void ExecuteNonQuery(string sql)
@@ -26,9 +23,15 @@ namespace WebApplication1.Frame.DataAccess
             GetCommand(sql).ExecuteNonQuery();
         }
 
+        public int ExecuteQuery(string sql)
+        {
+            int rowCount = GetCommand(sql).ExecuteNonQuery();
+            return rowCount;
+        }
+
         public void Dispose()
         {
-            dbConnection.Close();
+            _dbConnection.Close();
         }
     }
 }
